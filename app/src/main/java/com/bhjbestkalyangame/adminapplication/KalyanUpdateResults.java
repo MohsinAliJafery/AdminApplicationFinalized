@@ -4,30 +4,27 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
 
-public class SetResult extends AppCompatActivity {
+public class KalyanUpdateResults extends AppCompatActivity {
 
-    String mDate, mFrom;
+    String mFrom;
     int mTotalNumber;
     TextView aDate, Heading;
     LinearLayout LY;
@@ -36,39 +33,59 @@ public class SetResult extends AppCompatActivity {
     FirebaseDatabase mDatabase;
     DatabaseReference mReference;
 
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
+    private String date;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_result);
 
         mDatabase = FirebaseDatabase.getInstance();
-        mReference = mDatabase.getReference("current_lucky_numbers");
 
         Intent mIntent = getIntent();
         Bundle mBundle = mIntent.getExtras();
 
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("EEE, MMM d");
+        date = dateFormat.format(calendar.getTime());
+
         eT = new EditText(this);
         Heading = findViewById(R.id.heading);
-        aDate = findViewById(R.id.date);
         LY = findViewById(R.id.input_text_linearlayout);
 
         mFrom = mBundle.getString("mFrom");
-        mDate = mBundle.getString("mDate");
+
+        if(mFrom.equals("SingleNew") || mFrom.equals("JodiNew") || mFrom.equals("PanelNew")){
+            mReference = mDatabase.getReference("current_super_numbers").child(date);
+        }else{
+            mReference = mDatabase.getReference("current_lucky_numbers");
+        }
+
         mTotalNumber = Integer.valueOf(mBundle.getString("mTotalNumber"));
-        aDate.setText(mDate);
         Heading.setText("Enter "+ mFrom +" Numbers");
 
         for(int i = 0; i< mTotalNumber; i++){
 
             EditText ET = new EditText(this);
             ET.setId(i);
-            ET.setHint("Enter " + (i+1) + " Number");
+            ET.setHint( (i+1) +": Please enter a number.");
+            ET.setBackgroundColor(getResources().getColor(R.color.noColor));
+            ET.setTextSize(23);
+
+            ET.setPadding(20,20,20,20);
             LinearLayout.LayoutParams ETParams = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
             );
-            ETParams.setMargins(0, 3,0, 10);
-            ET.setInputType(InputType.TYPE_CLASS_NUMBER);
+            ETParams.setMargins(5, 15,5, 15);
+            ETParams.gravity = Gravity.CENTER_HORIZONTAL;
+            if(mFrom.equals("SingleNew") || mFrom.equals("JodiNew") || mFrom.equals("PanelNew")){
+                ET.setInputType(InputType.TYPE_CLASS_NUMBER);
+            }else{
+                ET.setInputType(InputType.TYPE_CLASS_TEXT);
+            }
             ET.setLayoutParams(ETParams);
             LY.addView(ET);
         }
@@ -76,15 +93,17 @@ public class SetResult extends AppCompatActivity {
             Button B = new Button(this);
             B.setId(BID);
             LinearLayout.LayoutParams BParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
         );
-            BParams.setMargins(0,7,0,0);
+            BParams.setMargins(0,15,0,0);
+            BParams.gravity = Gravity.CENTER_HORIZONTAL;
             B.setLayoutParams(BParams);
+            B.setGravity(Gravity.CENTER);
             B.setText("Upload");
-            B.setBackgroundColor(Color.MAGENTA);
+            B.setBackgroundColor(getResources().getColor(R.color.colorGolden));
             B.setPadding(5,5,5,5);
-            B.setTextColor(Color.WHITE);
+            B.setTextColor(Color.GRAY);
             LY.addView(B);
 
             B.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +115,13 @@ public class SetResult extends AppCompatActivity {
                         eT = findViewById(i);
                         mReference.child(mFrom).push().setValue(eT.getText().toString());
                     }
-                    Intent IntentSuccess = new Intent(SetResult.this, Success.class);
+
+                    HashMap<String, String> hashMap = new HashMap<String, String>();
+                    hashMap.put("date", date);
+                    mReference = mDatabase.getReference("current_super_numbers").child("date");
+                    mReference.setValue(hashMap);
+
+                    Intent IntentSuccess = new Intent(KalyanUpdateResults.this, KalyanMatkaResults.class);
                     IntentSuccess.putExtra("mFrom", mFrom);
                     startActivity(IntentSuccess);
                     finish();

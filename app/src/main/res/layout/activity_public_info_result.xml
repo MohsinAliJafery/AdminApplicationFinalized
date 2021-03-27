@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/noColor"
     android:layout_height="match_parent"
-    tools:context=".KalyanPicker">
+    android:background="@color/noColor"
+    tools:context=".PublicInformation">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -16,49 +16,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/kalyan"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Please Enter The Details"
-        android:textSize="27sp"
-        android:textColor="@color/colorGolden"
+        android:layout_marginTop="40dp"
+        android:width="300dp"
+        android:background="@color/noColor"
+        android:padding="20dp"
+        android:inputType="textMultiLine"
+        android:hint="Type Kalyan Result."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-
     <EditText
-        android:id="@+id/total_number"
-        android:layout_width="300dp"
+        android:id="@+id/kalyan_night"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:textColorHint="@color/colorGray"
-        android:textColor="@color/colorGray"
-        android:padding="10dp"
-        android:textSize="23sp"
-        android:background="@layout/background_for_edittext"
-        android:hint="Please enter a number"
-        android:inputType="number"
+        android:layout_marginTop="20dp"
+        android:width="300dp"
+        android:background="@color/noColor"
+        android:padding="20dp"
+        android:inputType="textMultiLine"
+        android:hint="Type Kalyan Night Result."
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/kalyan" />
 
     <Button
-        android:id="@+id/go"
-        android:layout_width="300dp"
+        android:id="@+id/send_kalyan_result"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
+        android:width="300dp"
+        android:text="Send Kalyan Result"
         android:background="@layout/primary_background_for_button"
-        android:text="Generate"
-        android:textColor="@color/noColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        android:textColor="@color/noColor"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/total_number" />
+        app:layout_constraintTop_toBottomOf="@+id/kalyan_night" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

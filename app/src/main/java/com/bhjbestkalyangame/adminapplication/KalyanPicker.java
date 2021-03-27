@@ -9,10 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class ChooseActivity extends AppCompatActivity {
+public class KalyanPicker extends AppCompatActivity {
 
     String mFrom;
-    EditText mDate, mTotalNumber;
+    EditText mTotalNumber;
     Button Go;
 
     @Override
@@ -25,7 +25,6 @@ public class ChooseActivity extends AppCompatActivity {
         mFrom = mBundle.getString("mFrom");
 
 
-        mDate = findViewById(R.id.date);
         mTotalNumber = findViewById(R.id.total_number);
         Go = findViewById(R.id.go);
 
@@ -33,13 +32,14 @@ public class ChooseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent mIntent = new Intent(ChooseActivity.this, SetResult.class);
-                mIntent.putExtra("mDate", mDate.getText().toString());
-                mIntent.putExtra("mTotalNumber", mTotalNumber.getText().toString());
-                mIntent.putExtra("mFrom", mFrom);
-                startActivity(mIntent);
-                finish();
-
+                if(!mTotalNumber.getText().toString().equals("")) {
+                    Intent mIntent = new Intent(KalyanPicker.this, KalyanUpdateResults.class);
+                    mIntent.putExtra("mTotalNumber", mTotalNumber.getText().toString());
+                    mIntent.putExtra("mFrom", mFrom);
+                    startActivity(mIntent);
+                }else{
+                    Toast.makeText(KalyanPicker.this, "Please enter a number to generate input fields!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

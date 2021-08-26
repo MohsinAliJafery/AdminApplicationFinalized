@@ -59,8 +59,15 @@ public class KalyanUpdateResults extends AppCompatActivity {
 
         if(mFrom.equals("SingleNew") || mFrom.equals("JodiNew") || mFrom.equals("PanelNew")){
             mReference = mDatabase.getReference("current_super_numbers").child(date);
-        }else{
-            mReference = mDatabase.getReference("current_lucky_numbers");
+        }else if(mFrom.equals("SingleOpenKalyan") || mFrom.equals("SingleCloseKalyan") || mFrom.equals("JodiKalyan")  || mFrom.equals("PanelKalyan")){
+            mReference = mDatabase.getReference("kalyan_matka_super_numbers").child(date);
+        }else if(mFrom.equals("special_game")){
+            mReference = mDatabase.getReference("special_game").child(date);
+        }else if(mFrom.equals("Rajdhani Night")) {
+            mReference = mDatabase.getReference("rajdhani").child(date);
+        }else {
+            mReference = mDatabase.getReference("kalyan_night_super_numbers").child(date);
+
         }
 
         mTotalNumber = Integer.valueOf(mBundle.getString("mTotalNumber"));
@@ -81,11 +88,7 @@ public class KalyanUpdateResults extends AppCompatActivity {
             );
             ETParams.setMargins(5, 15,5, 15);
             ETParams.gravity = Gravity.CENTER_HORIZONTAL;
-            if(mFrom.equals("SingleNew") || mFrom.equals("JodiNew") || mFrom.equals("PanelNew")){
-                ET.setInputType(InputType.TYPE_CLASS_NUMBER);
-            }else{
-                ET.setInputType(InputType.TYPE_CLASS_TEXT);
-            }
+            ET.setInputType(InputType.TYPE_CLASS_NUMBER);
             ET.setLayoutParams(ETParams);
             LY.addView(ET);
         }
@@ -100,7 +103,7 @@ public class KalyanUpdateResults extends AppCompatActivity {
             BParams.gravity = Gravity.CENTER_HORIZONTAL;
             B.setLayoutParams(BParams);
             B.setGravity(Gravity.CENTER);
-            B.setText("Upload");
+            B.setText("Go");
             B.setBackgroundColor(getResources().getColor(R.color.colorGolden));
             B.setPadding(5,5,5,5);
             B.setTextColor(Color.GRAY);

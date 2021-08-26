@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bhjbestkalyangame.adminapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,17 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PublicInfoResult"></activity>
-        <activity android:name=".PublicInformation" />
-        <activity android:name=".KalyanMatkaResults" />
-        <activity android:name=".KalyanPicker" />
-        <activity android:name=".KalyanMatkaInterface">
+        <activity android:name=".FreePackages"></activity>
+        <activity android:name=".SpecialGame" />
+        <activity android:name=".SuccessStory" />
+        <activity android:name=".SetCoinsLimit" />
+        <activity android:name=".KalyanNightGame" />
+        <activity android:name=".KalyanMatkaGame" />
+        <activity android:name=".KalyanMatkaKing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PublicInfoResult" />
+        <activity android:name=".PublicInformation" />
+        <activity android:name=".KalyanMatkaResults" />
+        <activity android:name=".KalyanPicker" />
+        <activity android:name=".KalyanMatkaInterface" />
         <activity android:name=".KalyanUpdateResults" />
     </application>
 

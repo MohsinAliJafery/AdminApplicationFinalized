@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/noColor"
-    tools:context=".KalyanMatkaInterface">
+    tools:context=".KalyanNightGame">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/kalyan_matka_2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,18 +21,19 @@
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
-
         <Button
-            android:id="@+id/public_info"
-            android:layout_width="200dp"
+            android:id="@+id/single_open_night"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:background="@layout/primary_background_for_button"
-            android:text="Public Info"
+            android:text="Single Open Kalyan Night"
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
@@ -39,54 +41,43 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/single_new"
-            android:layout_width="200dp"
+            android:id="@+id/single_close_night"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@layout/primary_background_for_button"
-            android:text="Single New"
+            android:text="Single Close Kalyan Night"
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/public_info" />
+            app:layout_constraintTop_toBottomOf="@+id/single_open_night" />
 
         <Button
-            android:id="@+id/jodi_new"
-            android:layout_width="200dp"
+            android:id="@+id/jodi_night"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@layout/primary_background_for_button"
-            android:text="Jodi New"
+            android:text="Jodi Kalyan Night"
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/single_new" />
+            app:layout_constraintTop_toBottomOf="@+id/single_close_night" />
+
 
         <Button
-            android:id="@+id/panel_new"
-            android:layout_width="200dp"
+            android:id="@+id/panel_night"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:background="@layout/primary_background_for_button"
-            android:text="Panel New"
+            android:text="Panel Kalyan Night"
+            android:layout_marginTop="4dp"
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/jodi_new" />
+            app:layout_constraintTop_toBottomOf="@+id/jodi_night" />
 
-        <Button
-            android:id="@+id/kalyan_result"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:background="@layout/primary_background_for_button"
-            android:text="Kalyan Result"
-            android:textColor="@color/noColor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/panel_new" />
-        
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -99,6 +90,5 @@
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent" />
-
-
+    
 </androidx.constraintlayout.widget.ConstraintLayout>

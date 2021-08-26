@@ -40,8 +40,7 @@ public class KalyanMatkaResults extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
-
-
+        
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("EEE, MMM d");
         date = dateFormat.format(calendar.getTime());
@@ -54,14 +53,22 @@ public class KalyanMatkaResults extends AppCompatActivity {
         Intent mIntent = getIntent();
         mFrom = mIntent.getStringExtra("mFrom");
 
-        Title.setText(mFrom + " Kalyan");
+        Title.setText(mFrom);
 
         Numbers = new HashMap<String, String>();
         mDatabase = FirebaseDatabase.getInstance();
         if(mFrom.equals("SingleNew") || mFrom.equals("JodiNew") || mFrom.equals("PanelNew")){
             mReference = mDatabase.getReference("current_super_numbers").child(date).child(mFrom);
-        }else{
-            mReference = mDatabase.getReference("current_lucky_numbers").child(mFrom);
+        }else if(mFrom.equals("SingleOpenKalyan") || mFrom.equals("SingleCloseKalyan") || mFrom.equals("JodiKalyan") || mFrom.equals("PanelKalyan")){
+            mReference = mDatabase.getReference("kalyan_matka_super_numbers").child(date).child(mFrom);
+        }else if(mFrom.equals("special_game")){
+            mReference = mDatabase.getReference("special_game").child(date).child(mFrom);
+
+        }else if(mFrom.equals("Rajdhani Night")) {
+            mReference = mDatabase.getReference("rajdhani").child(date).child(mFrom);
+        } else{
+            mReference = mDatabase.getReference("kalyan_night_super_numbers").child(date).child(mFrom);
+
         }
 
         mReference.orderByKey().addListenerForSingleValueEvent(new ValueEventListener() {

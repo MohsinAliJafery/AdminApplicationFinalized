@@ -44,18 +44,18 @@ public class FreePackages extends AppCompatActivity {
         Go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String specialGameFree, kalyanMatkaFree;
+                Integer specialGameFree, kalyanMatkaFree;
 
                 if (SpecialGameFreeWithSub.isChecked()) {
-                    specialGameFree = "1";
+                    specialGameFree = 1;
                 } else {
-                    specialGameFree = "0";
+                    specialGameFree = 0;
                 }
 
                 if (KalyanMatkaFreeOrPaid.isChecked()) {
-                    kalyanMatkaFree = "1";
+                    kalyanMatkaFree = 1;
                 } else {
-                    kalyanMatkaFree = "0";
+                    kalyanMatkaFree = 0;
                 }
 
 
@@ -88,9 +88,9 @@ public class FreePackages extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-               String kalyan_matka = snapshot.getValue(String.class);
+               Integer kalyan_matka = snapshot.getValue(Integer.class);
 
-                if (kalyan_matka.equals("1")) {
+                if (kalyan_matka == 1) {
                     KalyanMatkaFreeOrPaid.setChecked(true);
                 } else {
                     KalyanMatkaFreeOrPaid.setChecked(false);
@@ -108,9 +108,9 @@ public class FreePackages extends AppCompatActivity {
         SpecialGameFreeWithSubRef.child("special_game").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String special_game = snapshot.getValue(String.class);
+                Integer special_game = snapshot.getValue(Integer.class);
 
-                if (special_game.equals("1")) {
+                if (special_game == 1) {
                     SpecialGameFreeWithSub.setChecked(true);
                 } else {
                     SpecialGameFreeWithSub.setChecked(false);

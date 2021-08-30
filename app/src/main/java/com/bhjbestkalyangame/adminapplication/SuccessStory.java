@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -48,7 +47,7 @@ public class SuccessStory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sucess_story);
+        setContentView(R.layout.activity_success_story);
 
         mButtonUpload = findViewById(R.id.button_upload);
         mTitle = findViewById(R.id.story_title);

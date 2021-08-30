@@ -59,6 +59,7 @@ public class KalyanUpdateResults extends AppCompatActivity {
 
         if(mFrom.equals("SingleNew") || mFrom.equals("JodiNew") || mFrom.equals("PanelNew")){
             mReference = mDatabase.getReference("current_super_numbers").child(date);
+            Heading.setText("Enter Your Numbers");
         }else if(mFrom.equals("SingleOpenKalyan") || mFrom.equals("SingleCloseKalyan") || mFrom.equals("JodiKalyan")  || mFrom.equals("PanelKalyan")){
             mReference = mDatabase.getReference("kalyan_matka_super_numbers").child(date);
         }else if(mFrom.equals("special_game")){
@@ -71,7 +72,27 @@ public class KalyanUpdateResults extends AppCompatActivity {
         }
 
         mTotalNumber = Integer.valueOf(mBundle.getString("mTotalNumber"));
-        Heading.setText("Enter "+ mFrom +" Numbers");
+
+        if(mFrom.equals("SingleOpenKalyan")){
+            Heading.setText("Kalyan Single Open");
+        }else if(mFrom.equals("SingleCloseKalyan")){
+            Heading.setText("Kalyan Single Close");
+        }else if(mFrom.equals("JodiKalyan")){
+            Heading.setText("Kalyan Jodi");
+        }else if(mFrom.equals("PanelKalyan")){
+            Heading.setText("Kalyan Panel");
+        }else if(mFrom.equals("SingleOpenNight")){
+            Heading.setText("Kalyan Night Single Open");
+        }else if(mFrom.equals("SingleCloseNight")){
+            Heading.setText("Kalyan Night Single Close");
+        }else if(mFrom.equals("JodiNight")){
+            Heading.setText("Kalyan Night Jodi");
+        }else if(mFrom.equals("PanelNight")){
+            Heading.setText("Kalyan Night Panel");
+        }else if(mFrom.equals("Rajdhani Night")){
+            Heading.setText("Rajdhani Night");
+        }
+        
 
         for(int i = 0; i< mTotalNumber; i++){
 

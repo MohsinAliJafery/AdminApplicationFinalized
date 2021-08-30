@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/noColor"
     android:layout_height="match_parent"
     tools:context=".KalyanMatkaGame">
-    
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginTop="70dp"
         android:src="@drawable/kalyan_matka_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +32,7 @@
 
         <Button
             android:id="@+id/single_open"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:background="@layout/primary_background_for_button"
             android:text="Single Open Kalyan"
@@ -41,9 +44,9 @@
 
         <Button
             android:id="@+id/single_close"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="13dp"
             android:background="@layout/primary_background_for_button"
             android:text="Single Close Kalyan"
             android:textColor="@color/noColor"
@@ -53,9 +56,9 @@
 
         <Button
             android:id="@+id/jodi"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="13dp"
             android:background="@layout/primary_background_for_button"
             android:text="Jodi Kalyan"
             android:textColor="@color/noColor"
@@ -66,11 +69,11 @@
 
         <Button
             android:id="@+id/panel"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
             android:background="@layout/primary_background_for_button"
             android:text="Panel Kalyan"
-            android:layout_marginTop="4dp"
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,15 +82,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/colorPrimary"
-        android:fontFamily="sans-serif-thin"
-        android:text=""
-        android:textColor="@color/colorGray"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

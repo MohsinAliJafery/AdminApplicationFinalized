@@ -53,23 +53,44 @@ public class KalyanMatkaResults extends AppCompatActivity {
         Intent mIntent = getIntent();
         mFrom = mIntent.getStringExtra("mFrom");
 
-        Title.setText(mFrom);
+
 
         Numbers = new HashMap<String, String>();
         mDatabase = FirebaseDatabase.getInstance();
         if(mFrom.equals("SingleNew") || mFrom.equals("JodiNew") || mFrom.equals("PanelNew")){
             mReference = mDatabase.getReference("current_super_numbers").child(date).child(mFrom);
+            Title.setText(mFrom);
         }else if(mFrom.equals("SingleOpenKalyan") || mFrom.equals("SingleCloseKalyan") || mFrom.equals("JodiKalyan") || mFrom.equals("PanelKalyan")){
             mReference = mDatabase.getReference("kalyan_matka_super_numbers").child(date).child(mFrom);
         }else if(mFrom.equals("special_game")){
             mReference = mDatabase.getReference("special_game").child(date).child(mFrom);
-
+            Title.setText("Special Game");
         }else if(mFrom.equals("Rajdhani Night")) {
             mReference = mDatabase.getReference("rajdhani").child(date).child(mFrom);
+            Title.setText(mFrom);
         } else{
             mReference = mDatabase.getReference("kalyan_night_super_numbers").child(date).child(mFrom);
 
         }
+
+        if(mFrom.equals("SingleOpenKalyan")){
+            Title.setText("Kalyan Single Open");
+        }else if(mFrom.equals("SingleCloseKalyan")){
+            Title.setText("Kalyan Single Close");
+        }else if(mFrom.equals("JodiKalyan")){
+            Title.setText("Kalyan Jodi");
+        }else if(mFrom.equals("PanelKalyan")){
+            Title.setText("Kalyan Panel");
+        }else if(mFrom.equals("SingleOpenNight")){
+            Title.setText("Kalyan Night Single Open");
+        }else if(mFrom.equals("SingleCloseNight")){
+            Title.setText("Kalyan Night Single Close");
+        }else if(mFrom.equals("JodiNight")){
+            Title.setText("Kalyan Night Jodi");
+        }else if(mFrom.equals("PanelNight")){
+            Title.setText("Kalyan Night Panel");
+        }
+
 
         mReference.orderByKey().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -94,14 +115,9 @@ public class KalyanMatkaResults extends AppCompatActivity {
 
     private void populateGrid(List<String> values) {
         GridView mGridView = findViewById(R.id.gridview_success);
-        int i = 2;
-        if(mFrom.equals("Panel") || mFrom.equals("PanelNew")) {
-            mGridView.setNumColumns(i);
 
-        }else{
-            i = 3;
+            int i = 3;
             mGridView.setNumColumns(i);
-        }
 
         mGridView.setAdapter(new SuperNoAdapter(this, values));
     }

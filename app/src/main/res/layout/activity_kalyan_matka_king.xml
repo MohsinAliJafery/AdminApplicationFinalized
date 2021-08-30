@@ -7,11 +7,16 @@
     android:background="@color/noColor"
     tools:context=".KalyanMatkaKing">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/kalyan_matka_2"
+    <TextView
+        android:id="@+id/Heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kalyan Matka King"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:padding="10dp"
+        android:textAllCaps="true"
+        android:layout_margin="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,9 +26,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toBottomOf="@+id/Heading">
 
 
         <Button
@@ -39,6 +45,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/kalyan_results"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@layout/another_layout_for_button"
+            android:text="Kalyan Results"
+            android:textColor="@color/noColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/public_info" />
+
+        <Button
             android:id="@+id/kalyan_matka"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -48,7 +66,7 @@
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/public_info" />
+            app:layout_constraintTop_toBottomOf="@+id/kalyan_results" />
 
         <Button
             android:id="@+id/kalyan_night"
@@ -75,28 +93,29 @@
             app:layout_constraintTop_toBottomOf="@+id/kalyan_night" />
 
         <Button
-            android:id="@+id/current_app"
+            android:id="@+id/previous_app"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@layout/primary_background_for_button"
-            android:text="Current App"
+            android:text="Previous Version"
             android:textColor="@color/noColor"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rajdhani" />
+            app:layout_constraintTop_toBottomOf="@+id/success_stories" />
 
         <Button
             android:id="@+id/set_coins"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:background="@layout/primary_background_for_button"
+            android:background="@layout/another_layout_for_button"
             android:text="Set Coins"
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/current_app" />
+            app:layout_constraintTop_toBottomOf="@+id/special_game" />
 
         <Button
             android:id="@+id/special_game"
@@ -108,19 +127,19 @@
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/set_coins" />
+            app:layout_constraintTop_toBottomOf="@+id/rajdhani" />
 
         <Button
             android:id="@+id/free_packages"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:background="@layout/primary_background_for_button"
+            android:background="@layout/google_background_for_button"
             android:text="Free Packages"
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/special_game" />
+            app:layout_constraintTop_toBottomOf="@+id/set_coins" />
 
 
         <Button
@@ -131,7 +150,6 @@
             android:background="@layout/another_layout_for_button"
             android:text="Success Stories"
             android:textColor="@color/noColor"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/free_packages" />
@@ -139,16 +157,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/colorPrimary"
-        android:fontFamily="sans-serif-thin"
-        android:text=""
-        android:textColor="@color/colorGray"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

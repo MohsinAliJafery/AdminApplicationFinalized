@@ -14,20 +14,16 @@ import java.util.Calendar;
 public class KalyanMatkaInterface extends AppCompatActivity {
 
 
-     private Button PublicInfo, SingleNew, JodiNew, PanelNew, KalayanResult;
+     private Button SingleNew, JodiNew, PanelNew;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kalyan_work);
 
-        PublicInfo = findViewById(R.id.public_info);
         SingleNew = findViewById(R.id.single_new);
         JodiNew = findViewById(R.id.jodi_new);
         PanelNew = findViewById(R.id.panel_new);
-        KalayanResult = findViewById(R.id.kalyan_result);
-
-
 
         SingleNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,25 +54,6 @@ public class KalyanMatkaInterface extends AppCompatActivity {
 
             }
         });
-
-        PublicInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(KalyanMatkaInterface.this, PublicInformation.class);
-                intent.putExtra("mFrom", "public_info");
-                startActivity(intent);
-            }
-        });
-
-        KalayanResult.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(KalyanMatkaInterface.this, PublicInfoResult.class);
-                intent.putExtra("mFrom", "kalyan_result");
-                startActivity(intent);
-            }
-        });
-
 
 
     }

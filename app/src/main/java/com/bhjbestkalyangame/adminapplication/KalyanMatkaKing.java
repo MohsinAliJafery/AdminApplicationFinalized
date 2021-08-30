@@ -9,8 +9,7 @@ import android.widget.Button;
 
 public class KalyanMatkaKing extends AppCompatActivity {
     
-    private Button PublicInfo, KalyanMatka, KalyanNight, CurrentApp, SetCoins, SucessStories, SpecialGame, FreePackages;
-    private Button Rajdhani;
+    private Button PublicInfo, KalyanMatka, KalyanNight, PreviousApp, SetCoins, SucessStories, SpecialGame, FreePackages, Rajdhani, KalyanResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +19,13 @@ public class KalyanMatkaKing extends AppCompatActivity {
         PublicInfo = findViewById(R.id.public_info);
         KalyanMatka = findViewById(R.id.kalyan_matka);
         KalyanNight = findViewById(R.id.kalyan_night);
-        CurrentApp = findViewById(R.id.current_app);
+        PreviousApp = findViewById(R.id.previous_app);
         SetCoins = findViewById(R.id.set_coins);
         SucessStories = findViewById(R.id.success_stories);
         SpecialGame = findViewById(R.id.special_game);
         Rajdhani = findViewById(R.id.rajdhani);
         FreePackages = findViewById(R.id.free_packages);
+        KalyanResults = findViewById(R.id.kalyan_results);
 
         KalyanMatka.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,11 +54,10 @@ public class KalyanMatkaKing extends AppCompatActivity {
             }
         });
 
-        CurrentApp.setOnClickListener(new View.OnClickListener() {
+        PreviousApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(KalyanMatkaKing.this, KalyanMatkaInterface.class);
-                intent.putExtra("mFrom", "CurrentApp");
                 startActivity(intent);
             }
         });
@@ -67,7 +66,6 @@ public class KalyanMatkaKing extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(KalyanMatkaKing.this, SetCoinsLimit.class);
-                intent.putExtra("mFrom", "CurrentApp");
                 startActivity(intent);
             }
         });
@@ -77,6 +75,14 @@ public class KalyanMatkaKing extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(KalyanMatkaKing.this, PublicInformation.class);
                 intent.putExtra("mFrom", "public_info");
+                startActivity(intent);
+            }
+        });
+        
+        KalyanResults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(KalyanMatkaKing.this, PublicInfoResult.class);
                 startActivity(intent);
             }
         });

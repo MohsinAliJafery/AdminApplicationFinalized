@@ -11,6 +11,7 @@
         android:id="@+id/imageView2"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginTop="70dp"
         android:src="@drawable/kalyan_matka_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,28 +22,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
 
         <Button
-            android:id="@+id/public_info"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:background="@layout/primary_background_for_button"
-            android:text="Public Info"
-            android:textColor="@color/noColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
             android:id="@+id/single_new"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="13sp"
             android:background="@layout/primary_background_for_button"
             android:text="Single New"
             android:textColor="@color/noColor"
@@ -54,7 +44,7 @@
             android:id="@+id/jodi_new"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="13sp"
             android:background="@layout/primary_background_for_button"
             android:text="Jodi New"
             android:textColor="@color/noColor"
@@ -66,7 +56,7 @@
             android:id="@+id/panel_new"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="13sp"
             android:background="@layout/primary_background_for_button"
             android:text="Panel New"
             android:textColor="@color/noColor"
@@ -74,31 +64,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/jodi_new" />
 
-        <Button
-            android:id="@+id/kalyan_result"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:background="@layout/primary_background_for_button"
-            android:text="Kalyan Result"
-            android:textColor="@color/noColor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/panel_new" />
-        
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/colorPrimary"
-        android:fontFamily="sans-serif-thin"
-        android:text=""
-        android:textColor="@color/colorGray"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

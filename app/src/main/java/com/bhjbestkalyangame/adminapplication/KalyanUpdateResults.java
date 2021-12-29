@@ -1,7 +1,10 @@
 package com.bhjbestkalyangame.adminapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Gravity;
@@ -13,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +41,8 @@ public class KalyanUpdateResults extends AppCompatActivity {
     private SimpleDateFormat dateFormat;
     private String date;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +70,7 @@ public class KalyanUpdateResults extends AppCompatActivity {
             mReference = mDatabase.getReference("kalyan_matka_super_numbers").child(date);
         }else if(mFrom.equals("special_game")){
             mReference = mDatabase.getReference("special_game").child(date);
-        }else if(mFrom.equals("Rajdhani Night")) {
+        }else if(mFrom.equals("Rajdhani")) {
             mReference = mDatabase.getReference("rajdhani").child(date);
         }else {
             mReference = mDatabase.getReference("kalyan_night_super_numbers").child(date);
@@ -89,7 +95,7 @@ public class KalyanUpdateResults extends AppCompatActivity {
             Heading.setText("Kalyan Night Jodi");
         }else if(mFrom.equals("PanelNight")){
             Heading.setText("Kalyan Night Panel");
-        }else if(mFrom.equals("Rajdhani Night")){
+        }else if(mFrom.equals("Rajdhani")){
             Heading.setText("Rajdhani Night");
         }
         
@@ -100,11 +106,11 @@ public class KalyanUpdateResults extends AppCompatActivity {
             ET.setId(i);
             ET.setHint( (i+1) +": Please enter a number.");
             ET.setBackgroundColor(getResources().getColor(R.color.noColor));
-            ET.setTextSize(23);
+            ET.setTextSize(16);
 
             ET.setPadding(20,20,20,20);
             LinearLayout.LayoutParams ETParams = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
             );
             ETParams.setMargins(5, 15,5, 15);
@@ -117,17 +123,19 @@ public class KalyanUpdateResults extends AppCompatActivity {
             Button B = new Button(this);
             B.setId(BID);
             LinearLayout.LayoutParams BParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
-            BParams.setMargins(0,15,0,0);
+            BParams.setMargins(100,50,100,15);
             BParams.gravity = Gravity.CENTER_HORIZONTAL;
             B.setLayoutParams(BParams);
             B.setGravity(Gravity.CENTER);
-            B.setText("Go");
-            B.setBackgroundColor(getResources().getColor(R.color.colorGolden));
-            B.setPadding(5,5,5,5);
-            B.setTextColor(Color.GRAY);
+            B.setText("Publish");
+            B.setTextSize(16);
+            B.setBackground(getDrawable(R.layout.primary_background_for_button));
+        B.setPadding(20,20,20,20);
+
+        B.setTextColor(Color.WHITE);
             LY.addView(B);
 
             B.setOnClickListener(new View.OnClickListener() {

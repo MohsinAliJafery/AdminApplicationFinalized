@@ -2,12 +2,15 @@ package com.bhjbestkalyangame.adminapplication.Model;
 
 public class User {
 
-    private String ID, Username, ImageUrl;
+    private String ID, Username, Email, Status, ImageUrl;
 
-    public User(String userID, String username, String imageUrl) {
-        ID = userID;
-        Username = username;
-        ImageUrl = imageUrl;
+    public User(String ID, String Username, String Status, String Email, String ImageUrl) {
+        this.ID = ID;
+        this.Username = Username;
+        this.Email = Email;
+        this.Status = Status;
+        this.ImageUrl = ImageUrl;
+
     }
 
     public User() {
@@ -29,6 +32,22 @@ public class User {
         Username = username;
     }
 
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
+
     public String getImageUrl() {
         return ImageUrl;
     }
@@ -37,4 +56,3 @@ public class User {
         ImageUrl = imageUrl;
     }
 }
-

@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/noColor"
     android:layout_height="match_parent"
-    tools:context=".KalyanPicker">
+    android:background="@color/noColor"
+    tools:context=".SendNotificationToUsers">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -16,49 +16,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Please input any digit you like"
-        android:textSize="23sp"
-        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="40dp"
+        android:width="300dp"
+        android:textAllCaps="true"
+        android:background="@color/noColor"
+        android:padding="20dp"
+        android:inputType="textCapWords"
+        android:hint="Title will go here..."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-
     <EditText
-        android:id="@+id/total_number"
-        android:layout_width="300dp"
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:textColorHint="@color/colorGray"
-        android:textColor="@color/colorGray"
-        android:padding="10dp"
-        android:textSize="17sp"
-        android:background="@layout/background_for_edittext"
-        android:hint="Please enter a number"
-        android:inputType="number"
+        android:layout_marginTop="20dp"
+        android:width="300dp"
+        android:background="@color/noColor"
+        android:padding="20dp"
+        android:inputType="textCapSentences"
+        android:hint="Description will go here..."
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <Button
-        android:id="@+id/go"
-        android:layout_width="300dp"
+        android:id="@+id/send"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
+        android:width="300dp"
+        android:text="Send Notification"
         android:background="@layout/primary_background_for_button"
-        android:text="Generate"
-        android:textColor="@color/noColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        android:textColor="@color/noColor"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/total_number" />
+        app:layout_constraintTop_toBottomOf="@+id/description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

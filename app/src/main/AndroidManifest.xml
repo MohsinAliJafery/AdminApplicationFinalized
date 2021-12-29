@@ -3,6 +3,7 @@
     package="com.bhjbestkalyangame.adminapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -11,12 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FreePackages"></activity>
+        <activity
+            android:name=".ChatActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SendNotificationToUsers"
+            android:exported="true" />
+        <activity android:name=".FreePackages" />
         <activity android:name=".SpecialGame" />
         <activity android:name=".SuccessStory" />
         <activity android:name=".SetCoinsLimit" />
         <activity android:name=".KalyanNightGame" />
         <activity android:name=".KalyanMatkaGame" />
+        <activity android:name=".MessageActivity" />
         <activity android:name=".KalyanMatkaKing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +38,15 @@
         <activity android:name=".KalyanPicker" />
         <activity android:name=".KalyanMatkaInterface" />
         <activity android:name=".KalyanUpdateResults" />
+
+        <service
+            android:name=".Service.FirebaseMessagingService"
+            android:exported="false"
+            android:permission="TODO">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

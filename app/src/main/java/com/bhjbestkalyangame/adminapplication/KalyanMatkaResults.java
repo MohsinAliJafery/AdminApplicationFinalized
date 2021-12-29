@@ -65,9 +65,9 @@ public class KalyanMatkaResults extends AppCompatActivity {
         }else if(mFrom.equals("special_game")){
             mReference = mDatabase.getReference("special_game").child(date).child(mFrom);
             Title.setText("Special Game");
-        }else if(mFrom.equals("Rajdhani Night")) {
+        }else if(mFrom.equals("Rajdhani")) {
             mReference = mDatabase.getReference("rajdhani").child(date).child(mFrom);
-            Title.setText(mFrom);
+            Title.setText("Rajdhani Night");
         } else{
             mReference = mDatabase.getReference("kalyan_night_super_numbers").child(date).child(mFrom);
 

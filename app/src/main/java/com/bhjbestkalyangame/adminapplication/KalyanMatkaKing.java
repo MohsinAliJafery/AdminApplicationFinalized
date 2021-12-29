@@ -1,16 +1,25 @@
 package com.bhjbestkalyangame.adminapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class KalyanMatkaKing extends AppCompatActivity {
-    
-    private Button PublicInfo, KalyanMatka, KalyanNight, PreviousApp, SetCoins, SucessStories, SpecialGame, FreePackages, Rajdhani, KalyanResults;
+import com.bhjbestkalyangame.adminapplication.Fragments.UsersFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+public class KalyanMatkaKing extends AppCompatActivity {
+
+    private Button PublicInfo, KalyanMatka, KalyanNight, Notify, SetCoins, SucessStories, SpecialGame, FreePackages, Rajdhani, KalyanResults;
+    Fragment SelectedFragment = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,13 +28,17 @@ public class KalyanMatkaKing extends AppCompatActivity {
         PublicInfo = findViewById(R.id.public_info);
         KalyanMatka = findViewById(R.id.kalyan_matka);
         KalyanNight = findViewById(R.id.kalyan_night);
-        PreviousApp = findViewById(R.id.previous_app);
+        Notify = findViewById(R.id.notify);
         SetCoins = findViewById(R.id.set_coins);
         SucessStories = findViewById(R.id.success_stories);
         SpecialGame = findViewById(R.id.special_game);
         Rajdhani = findViewById(R.id.rajdhani);
         FreePackages = findViewById(R.id.free_packages);
         KalyanResults = findViewById(R.id.kalyan_results);
+
+
+        BottomNavigationView mBottomNavigation = findViewById(R.id.bottom_navigation);
+        mBottomNavigation.setOnNavigationItemSelectedListener(mBottomNavigationListener);
 
         KalyanMatka.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,15 +62,15 @@ public class KalyanMatkaKing extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(KalyanMatkaKing.this, KalyanPicker.class);
-                intent.putExtra("mFrom", "Rajdhani Night");
+                intent.putExtra("mFrom", "Rajdhani");
                 startActivity(intent);
             }
         });
 
-        PreviousApp.setOnClickListener(new View.OnClickListener() {
+        Notify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(KalyanMatkaKing.this, KalyanMatkaInterface.class);
+                Intent intent = new Intent(KalyanMatkaKing.this, SendNotificationToUsers.class);
                 startActivity(intent);
             }
         });
@@ -78,7 +91,7 @@ public class KalyanMatkaKing extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        
+
         KalyanResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +126,29 @@ public class KalyanMatkaKing extends AppCompatActivity {
             }
         });
 
-
-
     }
+    private BottomNavigationView.OnNavigationItemSelectedListener mBottomNavigationListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                    switch (item.getItemId()){
+
+                        case R.id.chat:
+
+//                          SelectedFragment = new UsersFragment();
+                            Intent intent = new Intent(KalyanMatkaKing.this, ChatActivity.class);
+                            startActivity(intent);
+                            break;
+
+                            }
+
+//                          getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container, SelectedFragment).commit();
+
+                         return true;
+
+                    }
+
+
+            };
 }

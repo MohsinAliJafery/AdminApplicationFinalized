@@ -32,14 +32,15 @@ public class KalyanPicker extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(!mTotalNumber.getText().toString().equals("")) {
+                if(!mTotalNumber.getText().toString().equals("") && !mTotalNumber.getText().toString().equals("0")) {
                     Intent mIntent = new Intent(KalyanPicker.this, KalyanUpdateResults.class);
                     mIntent.putExtra("mTotalNumber", mTotalNumber.getText().toString());
                     mIntent.putExtra("mFrom", mFrom);
                     startActivity(mIntent);
                 }else{
-                    Toast.makeText(KalyanPicker.this, "Please enter a number to generate input fields!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(KalyanPicker.this, "Please enter a valid number", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 

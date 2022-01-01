@@ -30,7 +30,7 @@ public class KalyanMatkaResults extends AppCompatActivity {
     FirebaseDatabase mDatabase;
     DatabaseReference mReference;
     List<String> Values;
-    TextView Title, mDate;;
+    TextView Title, mDate;
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;

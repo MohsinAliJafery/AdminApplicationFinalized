@@ -3,6 +3,7 @@ package com.bhjbestkalyangame.adminapplication.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import com.bhjbestkalyangame.adminapplication.Model.User;
 import com.bhjbestkalyangame.adminapplication.R;
 
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -33,13 +35,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private Context mContext;
     private List<User> mUser;
     private boolean isChat;
-
+    private String AdminId;
     private String TheLastMessage;
 
     public UserAdapter(Context mContext, List<User> mUser, boolean isChat) {
         this.mContext = mContext;
         this.mUser = mUser;
         this.isChat = isChat;
+        this.AdminId = "VYHYRTfHiscUVIKNz3sN4I1LrWn1";
     }
 
 
@@ -56,12 +59,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         final User user = mUser.get(position);
-        holder.Username.setText(user.getUsername());
-        if(user.getImageUrl().equals("default")){
-            holder.ProfileImage.setImageResource(R.mipmap.ic_launcher);
-        }else{
-            Glide.with(mContext).load(user.getImageUrl()).into(holder.ProfileImage);
-        }
+        holder.Username.setText(user.getUsername().substring(0,1).toUpperCase() + user.getUsername().substring(1).toLowerCase());
+
+        Glide.with(mContext).load(user.getImageUrl()).into(holder.ProfileImage);
+
 
         if(isChat){
             lastMessage(user.getID(), holder.LastText);
@@ -72,7 +73,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         if(isChat){
           if(user.getStatus().equals("online")){
                 holder.ImgOn.setVisibility(View.VISIBLE);
-                holder.ImgOff.setVisibility(View.VISIBLE);
+                holder.ImgOff.setVisibility(View.GONE);
          }else{
                holder.ImgOff.setVisibility(View.VISIBLE);
                holder.ImgOn.setVisibility(View.GONE);
@@ -88,7 +89,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
                 Intent mIntent;
                 mIntent  = new Intent(mContext, MessageActivity.class);
-
                 mIntent.putExtra("UserId", user.getID());
                 mContext.startActivity(mIntent);
             }
@@ -130,8 +130,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot mDataSnapshot: snapshot.getChildren()){
                     Chat mChat = mDataSnapshot.getValue(Chat.class);
-                    if(mChat.getReceiver().equals(mFirebaseUser.getUid()) && mChat.getSender().equals(userId) ||
-                            mChat.getReceiver().equals(userId) && mChat.getSender().equals(mFirebaseUser.getUid())){
+                    if(mChat.getReceiver().equals(AdminId) && mChat.getSender().equals(userId) ||
+                            mChat.getReceiver().equals(userId) && mChat.getSender().equals(AdminId)){
                             TheLastMessage = mChat.getMessage();
                     }
                 }

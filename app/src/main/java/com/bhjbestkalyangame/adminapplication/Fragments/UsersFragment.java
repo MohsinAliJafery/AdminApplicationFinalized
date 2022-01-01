@@ -8,11 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,13 +36,19 @@ public class UsersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_child_users, container, false);
+        View view = inflater.inflate(R.layout.fragment_users, container, false);
 
         mRecyclerView = view.findViewById(R.id.MyRecyclerView);
         mToolbar = view.findViewById(R.id.toolbar);
         AdminId = "VYHYRTfHiscUVIKNz3sN4I1LrWn1";
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
+                layoutManager.getOrientation());
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
+        mRecyclerView.setLayoutManager(layoutManager);
 
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -116,6 +121,7 @@ public class UsersFragment extends Fragment {
 //    }
 
     private void ReadUsers() {
+         String ImageURL;
 
 //        final FirebaseUser mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference mReference = FirebaseDatabase.getInstance().getReference("all_users_data");
@@ -134,7 +140,7 @@ public class UsersFragment extends Fragment {
 
                     }
 
-                    mUserAdapter = new UserAdapter(getContext(), mUser, false);
+                    mUserAdapter = new UserAdapter(getContext(), mUser, true);
                     mRecyclerView.setAdapter(mUserAdapter);
 
             }

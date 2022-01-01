@@ -163,7 +163,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:labelVisibilityMode="unlabeled"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navigation" />
 

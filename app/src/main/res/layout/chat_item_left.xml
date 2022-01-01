@@ -5,27 +5,31 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:id="@+id/profile_image"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@drawable/user" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/profile_image"
-        android:layout_marginLeft="5dp"
         android:id="@+id/show_message"
-        android:text="Hello"
-        android:padding="8dp"
-        android:background="@color/colorAccent"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/profile_image"
+        android:background="@layout/background_left"
+        android:padding="8dp"
+        android:text="Hi, what's up?"
+        android:textColor="@color/colorBlack"
+        android:textSize="17dp" />
+
+    <TextView
         android:id="@+id/text_seen"
-        android:visibility="gone"
-        android:text="seen"
-        android:layout_below="@+id/show_message"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:layout_below="@+id/profile_image"
+        android:gravity="center_horizontal"
+        android:text="Seen" />
 
 </RelativeLayout>

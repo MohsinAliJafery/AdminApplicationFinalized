@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -135,15 +136,15 @@ public class KalyanMatkaKing extends AppCompatActivity {
                     switch (item.getItemId()){
 
                         case R.id.chat:
-
-//                          SelectedFragment = new UsersFragment();
                             Intent intent = new Intent(KalyanMatkaKing.this, ChatActivity.class);
                             startActivity(intent);
                             break;
 
-                            }
+                        case R.id.facebook:
+                            startActivity(getOpenFacebookIntent());
+                            break;
 
-//                          getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container, SelectedFragment).commit();
+                            }
 
                          return true;
 
@@ -151,4 +152,13 @@ public class KalyanMatkaKing extends AppCompatActivity {
 
 
             };
+
+    public Intent getOpenFacebookIntent() {
+        try {
+            getPackageManager().getPackageInfo("com.facebook.katana", 0);
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.facebook.com/kalyanbestgame"));
+        } catch (Exception e) {
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/kalyanbestgame"));
+        }
+    }
 }

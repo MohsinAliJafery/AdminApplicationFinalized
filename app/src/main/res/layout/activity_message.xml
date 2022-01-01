@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e6e6e6"
-    tools:context=".MessageActivityForChild">
+    tools:context=".MessageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -15,33 +15,37 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             android:id="@+id/my_toolbar"
             app:popupTheme="@style/MenuStyle">
 
-
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/user"
                 android:id="@+id/profile_image"/>
 
             <TextView
+                android:id="@+id/Username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MyLove"
-                android:textSize="20dp"
-                android:textColor="#ffff"
-                android:id="@+id/Username" />
+                android:text="Username"
+                android:textSize="23dp"
+                android:inputType="textCapWords"
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="#ffff" />
+
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_message_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/bar_layout"
-        android:id="@+id/recyclerview_message_activity"
-        android:layout_above="@id/bottom"/>
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/bar_layout" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -52,14 +56,17 @@
         android:layout_alignParentBottom="true">
 
         <EditText
+            android:id="@+id/type_a_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="type a message"
-            android:background="@android:color/transparent"
             android:layout_centerVertical="true"
-            android:id="@+id/type_a_message"
+            android:layout_toStartOf="@+id/send_message"
             android:layout_toLeftOf="@+id/send_message"
-            android:layout_toStartOf="@+id/send_message" />
+            android:background="@android:color/transparent"
+            android:hint="Type a message"
+            android:inputType="textCapSentences"
+            android:padding="5dp"
+            android:textSize="16dp" />
 
 
         <Button

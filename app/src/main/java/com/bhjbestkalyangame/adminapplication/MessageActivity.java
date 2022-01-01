@@ -40,7 +40,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessageActivity extends AppCompatActivity {
 
-
     CircleImageView ProfileImage;
     TextView Username;
 
@@ -60,7 +59,6 @@ public class MessageActivity extends AppCompatActivity {
     ValueEventListener mSeenListener;
     private String AdminId;
 
-    //        ApiService mApiService;
     String mUserID;
     boolean notify = false;
 
@@ -74,13 +72,6 @@ public class MessageActivity extends AppCompatActivity {
         Toolbar mToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("");
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    startActivity(new Intent(ChattingActivity.this, ChatActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-//                }
-//            });
 
         mChat = new ArrayList<>();
 
@@ -89,9 +80,7 @@ public class MessageActivity extends AppCompatActivity {
 
         ProfileImage = findViewById(R.id.profile_image);
         Username = findViewById(R.id.Username);
-
         mIntent = getIntent();
-
 
         mRecyclerView = findViewById(R.id.recyclerview_message_activity);
         mRecyclerView.setHasFixedSize(true);
@@ -99,7 +88,6 @@ public class MessageActivity extends AppCompatActivity {
         mLinearLayoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
-        // mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         SharedPreferences sharedpreferences = getSharedPreferences("RealApp", Context.MODE_PRIVATE);
 
         AdminId = "VYHYRTfHiscUVIKNz3sN4I1LrWn1";
@@ -113,15 +101,9 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
                 Username.setText(user.getUsername());
-                if(user.getImageUrl().equals("default")){
-                    ProfileImage.setImageResource(R.mipmap.ic_launcher);
-                }else{
-                    Glide.with(getApplicationContext()).load(user.getImageUrl()).into(ProfileImage);
-                }
 
-                //readMessage(mFirebaseUser.getUid(), UserId, user.getImageUrl());
+                Glide.with(getApplicationContext()).load(user.getImageUrl()).into(ProfileImage);
                 readMessage(mUserID, AdminId, user.getImageUrl());
-
             }
 
             @Override
@@ -161,7 +143,7 @@ public class MessageActivity extends AppCompatActivity {
                     if(chat.getReceiver().equals(mUserID) && chat.getSender().equals(AdminId)){
 
                         HashMap<String, Object> mHashmap = new HashMap<>();
-                        mHashmap.put("seen", true);
+                        mHashmap.put("Seen", true);
                         mSnapshot.getRef().updateChildren(mHashmap);
 
                     }
@@ -224,13 +206,9 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
     private void readMessage(final String MyID, final String AdminId, final String ImageUrl){
-
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("Chats");
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
@@ -260,23 +238,24 @@ public class MessageActivity extends AppCompatActivity {
 
     private void status(String status){
 
-//        mDatabaseReference = FirebaseDatabase.getInstance().getReference("all_users_data").child(mUserID);
-//        HashMap<String, Object> mHashmap = new HashMap<>();
-//        mHashmap.put("Status", status);
-//        mDatabaseReference.updateChildren(mHashmap);
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("all_users_data").child(mUserID);
+        HashMap<String, Object> mHashmap = new HashMap<>();
+        mHashmap.put("Status", status);
+        mDatabaseReference.updateChildren(mHashmap);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        status("online");
+        status("Online");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mDatabaseReference.removeEventListener(mSeenListener);
-        status("offline");
+        status("Offline");
     }
+
 }

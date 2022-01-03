@@ -1,15 +1,20 @@
 package com.bhjbestkalyangame.adminapplication.Model;
 
+import java.sql.Timestamp;
+
 public class User {
 
-    private String ID, Username, Email, Status, ImageUrl;
+    private String ID, Username, Email, Status, ImageUrl, Token;
+    private long timestamp;
 
-    public User(String ID, String Username, String Status, String Email, String ImageUrl) {
+    public User(String ID, String Username, String Status, String Email, String ImageUrl, String Token, long timestamp) {
         this.ID = ID;
         this.Username = Username;
         this.Email = Email;
         this.Status = Status;
         this.ImageUrl = ImageUrl;
+        this.Token = Token;
+        this.timestamp = timestamp;
 
     }
 
@@ -54,5 +59,21 @@ public class User {
 
     public void setImageUrl(String imageUrl) {
         ImageUrl = imageUrl;
+    }
+
+    public String getToken() {
+        return Token;
+    }
+
+    public void setToken(String token) {
+        Token = token;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }

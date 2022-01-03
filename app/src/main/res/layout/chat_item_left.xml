@@ -27,8 +27,12 @@
         android:id="@+id/text_seen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="7dp"
         android:layout_below="@+id/profile_image"
+        android:layout_marginStart="7dp"
+        android:visibility="gone"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="7dp"
         android:gravity="center_horizontal"
         android:text="Seen" />
 

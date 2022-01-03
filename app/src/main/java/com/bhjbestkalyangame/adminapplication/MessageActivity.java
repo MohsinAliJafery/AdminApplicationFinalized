@@ -1,6 +1,8 @@
 package com.bhjbestkalyangame.adminapplication;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,7 +47,7 @@ public class MessageActivity extends AppCompatActivity {
 
     Intent mIntent;
 
-    Button SendMessage;
+    Button SendMessage, CopyEmail, CopyToken;
     EditText TypeAMessage;
 
     MessageAdapter mMessageAdapter;
@@ -59,7 +61,7 @@ public class MessageActivity extends AppCompatActivity {
     ValueEventListener mSeenListener;
     private String AdminId;
 
-    String mUserID;
+    String mUserID, mUserEmail, mUserToken;
     boolean notify = false;
 
     @SuppressLint("WrongViewCast")
@@ -77,6 +79,8 @@ public class MessageActivity extends AppCompatActivity {
 
         SendMessage = findViewById(R.id.send_message);
         TypeAMessage = findViewById(R.id.type_a_message);
+        CopyToken = findViewById(R.id.copy_token);
+        CopyEmail = findViewById(R.id.copy_email);
 
         ProfileImage = findViewById(R.id.profile_image);
         Username = findViewById(R.id.Username);
@@ -92,6 +96,8 @@ public class MessageActivity extends AppCompatActivity {
 
         AdminId = "VYHYRTfHiscUVIKNz3sN4I1LrWn1";
         mUserID = mIntent.getStringExtra("UserId");
+        mUserEmail = mIntent.getStringExtra("UserEmail");
+        mUserToken = mIntent.getStringExtra("UserToken");
 
         // Change Id From ADmin to UserID
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("all_users_data").child(mUserID);
@@ -127,9 +133,44 @@ public class MessageActivity extends AppCompatActivity {
                 TypeAMessage.setText("");
             }
         });
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 
+        CopyEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CopyEmail.setText("Got it!");
+                CopyEmail.setTextColor(getResources().getColor(R.color.colorGoogle));
+                CopyEmail.setBackgroundColor(getResources().getColor(R.color.noColor));
+                ClipData clip = ClipData.newPlainText("Email", mUserEmail);
+                clipboardManager.setPrimaryClip(clip);
+                Intent intent= new Intent(Intent.ACTION_SEND);
+                String[] recipients={mUserEmail};
+                intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+                intent.putExtra(Intent.EXTRA_SUBJECT,"Kalyan Matka King - Important Notice!");
+                intent.putExtra(Intent.EXTRA_TEXT,"");
+                intent.putExtra(Intent.EXTRA_CC,"mailcc@gmail.com");
+                intent.setType("text/html");
+                intent.setPackage("com.google.android.gm");
+                startActivity(Intent.createChooser(intent, "Send mail"));
+            }
+        });
 
+        CopyToken.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View view) {
+                CopyToken.setTextColor(getResources().getColor(R.color.colorPrimary));
+                CopyToken.setBackgroundColor(getResources().getColor(R.color.noColor));
+                CopyToken.setText("Got it!");
+                ClipData clip = ClipData.newPlainText("Token", mUserToken);
+                clipboardManager.setPrimaryClip(clip);
 
+                Intent intent = new Intent(MessageActivity.this, SendNotificationToUsers.class);
+                intent.putExtra("Token", mUserToken);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
+        });
 
     }
 

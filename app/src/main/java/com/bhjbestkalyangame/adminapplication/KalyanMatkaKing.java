@@ -2,9 +2,11 @@ package com.bhjbestkalyangame.adminapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,11 +18,13 @@ import android.widget.Button;
 
 import com.bhjbestkalyangame.adminapplication.Fragments.UsersFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 public class KalyanMatkaKing extends AppCompatActivity {
 
     private Button PublicInfo, KalyanMatka, KalyanNight, Notify, SetCoins, SucessStories, SpecialGame, FreePackages, Rajdhani, KalyanResults;
     Fragment SelectedFragment = null;
+    ConstraintLayout mLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,7 @@ public class KalyanMatkaKing extends AppCompatActivity {
         Rajdhani = findViewById(R.id.rajdhani);
         FreePackages = findViewById(R.id.free_packages);
         KalyanResults = findViewById(R.id.kalyan_results);
+        mLayout = findViewById(R.id.kalyan_matka_king_layout);
 
 
         BottomNavigationView mBottomNavigation = findViewById(R.id.bottom_navigation);
@@ -72,6 +77,7 @@ public class KalyanMatkaKing extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(KalyanMatkaKing.this, SendNotificationToUsers.class);
+                intent.putExtra("Token", "");
                 startActivity(intent);
             }
         });
@@ -130,6 +136,7 @@ public class KalyanMatkaKing extends AppCompatActivity {
     }
     private BottomNavigationView.OnNavigationItemSelectedListener mBottomNavigationListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @SuppressLint("ResourceAsColor")
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -141,7 +148,17 @@ public class KalyanMatkaKing extends AppCompatActivity {
                             break;
 
                         case R.id.facebook:
-                            startActivity(getOpenFacebookIntent());
+                            Snackbar.make(mLayout, "Do you want to visit our Facebook page?", Snackbar.LENGTH_LONG)
+                                    .setTextColor(getResources().getColor(R.color.colorPrimaryDark))
+                                    .setBackgroundTint(getResources().getColor(R.color.colorPrimary))
+                                    .setAction("Yes", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            startActivity(getOpenFacebookIntent());
+                                        }
+                                    })
+                                    .setActionTextColor(R.color.colorGoogle)
+                                    .show();
                             break;
 
                             }

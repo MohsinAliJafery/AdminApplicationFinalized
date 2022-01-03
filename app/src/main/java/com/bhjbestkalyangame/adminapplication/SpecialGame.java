@@ -23,7 +23,7 @@ import java.util.HashMap;
 
 public class SpecialGame extends AppCompatActivity {
 
-    EditText Title, Type;
+    EditText Title, Type, NameOfGame;
     Button Go, SpecialGame;
     Switch Display;
     FirebaseDatabase mDatabase;
@@ -36,6 +36,7 @@ public class SpecialGame extends AppCompatActivity {
         setContentView(R.layout.activity_special_game);
 
         Title = findViewById(R.id.title);
+        NameOfGame = findViewById(R.id.name_of_game);
         Type = findViewById(R.id.type);
         Go = findViewById(R.id.go);
         SpecialGame = findViewById(R.id.special_game);
@@ -53,6 +54,8 @@ public class SpecialGame extends AppCompatActivity {
 
                 String title = Title.getText().toString();
                 String type = Type.getText().toString();
+                String name = NameOfGame.getText().toString();
+
                 String display;
 
                 if(Display.isChecked()){
@@ -65,6 +68,7 @@ public class SpecialGame extends AppCompatActivity {
                 hashMap.put("title", title);
                 hashMap.put("type", type);
                 hashMap.put("display", display);
+                hashMap.put("name", name);
 
 
                 mReference.child("info").setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -102,6 +106,7 @@ public class SpecialGame extends AppCompatActivity {
                 String SpecialGameTitle = specialGameInfo.getTitle();
                 String SpecialGameSubTitle = specialGameInfo.getType();
                 String SpecialGameVisibility = specialGameInfo.getDisplay();
+                String GameName = specialGameInfo.getName();
 
                 if(SpecialGameVisibility.equals("1")){
                     Display.setChecked(true);
@@ -111,6 +116,7 @@ public class SpecialGame extends AppCompatActivity {
 
                 Title.setText(SpecialGameTitle);
                 Type.setText(SpecialGameSubTitle);
+                NameOfGame.setText(GameName);
 
             }
 

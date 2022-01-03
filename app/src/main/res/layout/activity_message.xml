@@ -22,14 +22,12 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/user"
                 android:id="@+id/profile_image"/>
 
             <TextView
                 android:id="@+id/Username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username"
                 android:textSize="23dp"
                 android:inputType="textCapWords"
                 android:padding="5dp"
@@ -40,12 +38,44 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_message_activity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom"
-        android:layout_below="@id/bar_layout" />
+        android:layout_height="581dp"
+        android:layout_above="@id/bottom" />
+
+    <LinearLayout
+        android:id="@+id/copy_clipboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/recyclerview_message_activity"
+        android:layout_below="@id/bar_layout"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/copy_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorGoogle"
+            android:text="Email"
+            android:textStyle="bold"
+            android:textColor="@color/noColor" />
+
+        <Button
+            android:id="@+id/copy_token"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"
+            android:text="Token"
+            android:textColor="@color/noColor" />
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

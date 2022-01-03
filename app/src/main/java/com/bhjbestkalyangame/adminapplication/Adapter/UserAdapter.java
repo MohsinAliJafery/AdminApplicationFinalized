@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,7 +61,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         final User user = mUser.get(position);
         holder.Username.setText(user.getUsername().substring(0,1).toUpperCase() + user.getUsername().substring(1).toLowerCase());
-
+        holder.Email.setText(user.getEmail().toLowerCase());
         Glide.with(mContext).load(user.getImageUrl()).into(holder.ProfileImage);
 
 
@@ -70,7 +71,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             holder.LastText.setVisibility(View.GONE);
         }
 
-        if(isChat){
+//        if(isChat){
           if(user.getStatus().equals("online")){
                 holder.ImgOn.setVisibility(View.VISIBLE);
                 holder.ImgOff.setVisibility(View.GONE);
@@ -78,10 +79,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                holder.ImgOff.setVisibility(View.VISIBLE);
                holder.ImgOn.setVisibility(View.GONE);
            }
-       }else{
-               holder.ImgOff.setVisibility(View.GONE);
-               holder.ImgOn.setVisibility(View.GONE);
-       }
+//       }else{
+//               holder.ImgOff.setVisibility(View.GONE);
+//               holder.ImgOn.setVisibility(View.GONE);
+//       }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +91,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 Intent mIntent;
                 mIntent  = new Intent(mContext, MessageActivity.class);
                 mIntent.putExtra("UserId", user.getID());
+                mIntent.putExtra("UserEmail", user.getEmail());
+                mIntent.putExtra("UserToken", user.getToken());
                 mContext.startActivity(mIntent);
             }
         });
@@ -104,6 +107,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView Username;
+        public EditText Email;
         public CircleImageView ProfileImage;
         private CircleImageView ImgOn, ImgOff;
         private TextView LastText;
@@ -111,6 +115,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             Username = itemView.findViewById(R.id.Username);
+            Email = itemView.findViewById(R.id.email);
             ProfileImage = itemView.findViewById(R.id.ProfileImage);
             ImgOn = itemView.findViewById(R.id.img_on);
             ImgOff = itemView.findViewById(R.id.img_off);
@@ -138,7 +143,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
                 switch(TheLastMessage){
                     case "default":
-                        last_message.setText("No Message");
+
                         break;
 
                      default:

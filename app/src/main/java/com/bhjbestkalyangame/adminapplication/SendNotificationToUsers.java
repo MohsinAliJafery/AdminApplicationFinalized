@@ -15,9 +15,9 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class SendNotificationToUsers extends AppCompatActivity {
 
-    private EditText Title, Description;
-    private Button Send;
-
+    private EditText Title, Description, UserToken;
+    private Button SendToUser, Broadcast;
+    private String mUserToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,15 +25,23 @@ public class SendNotificationToUsers extends AppCompatActivity {
 
         Title = findViewById(R.id.title);
         Description = findViewById(R.id.description);
-        Send = findViewById(R.id.send);
+        UserToken = findViewById(R.id.user_token);
+        Broadcast = findViewById(R.id.broadcast);
+        SendToUser = findViewById(R.id.send_to_user);
+
+        Intent intent = getIntent();
+        mUserToken = intent.getStringExtra("Token");
+        if(!mUserToken.equals("")){
+            UserToken.setText(mUserToken);
+        }
 
         FirebaseMessaging.getInstance().subscribeToTopic("all");
 
-        Send.setOnClickListener(new View.OnClickListener() {
+        Broadcast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Send.setEnabled(false);
+                Broadcast.setEnabled(false);
                 if(!Title.getText().toString().isEmpty() && !Description.getText().toString().isEmpty()) {
                     FcmNotificationsSender mFcmNotificationSender = new FcmNotificationsSender("/topics/all",
                             Title.getText().toString(), Description.getText().toString(), getApplicationContext(), SendNotificationToUsers.this);
@@ -44,6 +52,21 @@ public class SendNotificationToUsers extends AppCompatActivity {
                     Toast.makeText(SendNotificationToUsers.this, "Fields must not be empty.", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        SendToUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!Title.getText().toString().isEmpty() && !Description.getText().toString().isEmpty() && !SendToUser.getText().toString().isEmpty()) {
+                    FcmNotificationsSender mFcmNotificationSender = new FcmNotificationsSender(UserToken.getText().toString(),
+                            Title.getText().toString(), Description.getText().toString(), getApplicationContext(), SendNotificationToUsers.this);
+
+                    mFcmNotificationSender.SendNotifications();
+                    finish();
+                }else{
+                    Toast.makeText(SendNotificationToUsers.this, "Fields must not be empty.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

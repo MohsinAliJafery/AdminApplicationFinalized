@@ -25,6 +25,19 @@
         android:layout_toRightOf="@+id/ProfileImage"
         android:textSize="18sp" />
 
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mohsin ali"
+        android:layout_marginLeft="10dp"
+        android:textAllCaps="true"
+        android:visibility="gone"
+        android:background="@color/noColor"
+        android:layout_below="@+id/Username"
+        android:layout_toRightOf="@id/ProfileImage"
+        android:textSize="9sp" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_on"
         android:layout_width="15dp"
@@ -56,7 +69,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Username"
+        android:layout_below="@+id/email"
         android:layout_toRightOf="@id/ProfileImage"
         android:layout_marginLeft="10dp"
         android:id="@+id/last_text"

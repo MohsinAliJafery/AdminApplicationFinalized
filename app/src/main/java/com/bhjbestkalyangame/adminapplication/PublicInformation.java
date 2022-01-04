@@ -2,9 +2,11 @@ package com.bhjbestkalyangame.adminapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,15 +14,17 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class PublicInformation extends AppCompatActivity {
 
     EditText PublicInfo;
-    Button SendBroadcast;
+    Button SendBroadcast, ClearChat;
     FirebaseDatabase mDatabase;
     DatabaseReference mReference;
+    ConstraintLayout mLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +33,35 @@ public class PublicInformation extends AppCompatActivity {
 
         PublicInfo = findViewById(R.id.public_info_message);
         SendBroadcast = findViewById(R.id.send_broadcast_message);
-
+        ClearChat = findViewById(R.id.clear_chat);
+        mLayout = findViewById(R.id.public_information);
         mDatabase = FirebaseDatabase.getInstance();
+
+        ClearChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(mLayout, "Do you really want to clear all Chat?", Snackbar.LENGTH_LONG)
+                        .setTextColor(getResources().getColor(R.color.noColor))
+                        .setBackgroundTint(getResources().getColor(R.color.colorPrimaryDark))
+                        .setAction("Yes", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                DatabaseReference mRef = mDatabase.getReference("all_users_data");
+                                mRef.removeValue();
+                                mRef = mDatabase.getReference("Chats");
+                                mRef.removeValue();
+                                mRef = mDatabase.getReference("Chatlist");
+                                mRef.removeValue();
+                                Toast.makeText(PublicInformation.this, "Deletion Successful", Toast.LENGTH_SHORT).show();
+                            }
+
+                        })
+                        .setActionTextColor(getResources().getColor(R.color.noColor))
+                        .show();
+
+            }
+        });
+
         mReference = mDatabase.getReference("public_information");
 
         SendBroadcast.setOnClickListener(new View.OnClickListener() {

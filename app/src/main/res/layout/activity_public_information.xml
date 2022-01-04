@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/public_information"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/noColor"
@@ -43,5 +44,20 @@
         android:textColor="@color/noColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/public_info_message" />
+
+
+    <Button
+        android:id="@+id/clear_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:width="300dp"
+        android:text="Clear Chat"
+        android:background="@layout/another_layout_for_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/noColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/send_broadcast_message" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

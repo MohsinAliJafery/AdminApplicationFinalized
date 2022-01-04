@@ -64,6 +64,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.Email.setText(user.getEmail().toLowerCase());
         Glide.with(mContext).load(user.getImageUrl()).into(holder.ProfileImage);
 
+        if(user.getNewMessage().equals("new")){
+            holder.newMessage.setVisibility(View.VISIBLE);
+        }
 
         if(isChat){
             lastMessage(user.getID(), holder.LastText);
@@ -71,7 +74,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             holder.LastText.setVisibility(View.GONE);
         }
 
-//        if(isChat){
           if(user.getStatus().equals("online")){
                 holder.ImgOn.setVisibility(View.VISIBLE);
                 holder.ImgOff.setVisibility(View.GONE);
@@ -79,10 +81,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                holder.ImgOff.setVisibility(View.VISIBLE);
                holder.ImgOn.setVisibility(View.GONE);
            }
-//       }else{
-//               holder.ImgOff.setVisibility(View.GONE);
-//               holder.ImgOn.setVisibility(View.GONE);
-//       }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +104,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView Username;
+        public TextView Username, newMessage;
         public EditText Email;
         public CircleImageView ProfileImage;
         private CircleImageView ImgOn, ImgOff;
@@ -120,6 +118,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             ImgOn = itemView.findViewById(R.id.img_on);
             ImgOff = itemView.findViewById(R.id.img_off);
             LastText = itemView.findViewById(R.id.last_text);
+            newMessage = itemView.findViewById(R.id.newMessage);
         }
 
     }

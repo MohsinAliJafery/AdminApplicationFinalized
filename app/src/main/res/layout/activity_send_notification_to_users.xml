@@ -25,7 +25,6 @@
         android:background="@color/noColor"
         android:padding="20dp"
         android:text="Kalyan Matka King"
-        android:inputType="textMultiLine"
         android:hint="Title will go here..."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"

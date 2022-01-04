@@ -60,7 +60,7 @@ public class MessageActivity extends AppCompatActivity {
 
     ValueEventListener mSeenListener;
     private String AdminId;
-
+    private FirebaseDatabase mDatabase;
     String mUserID, mUserEmail, mUserToken;
     boolean notify = false;
 
@@ -76,7 +76,7 @@ public class MessageActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
 
         mChat = new ArrayList<>();
-
+        mDatabase = FirebaseDatabase.getInstance();
         SendMessage = findViewById(R.id.send_message);
         TypeAMessage = findViewById(R.id.type_a_message);
         CopyToken = findViewById(R.id.copy_token);
@@ -262,11 +262,13 @@ public class MessageActivity extends AppCompatActivity {
                             || chat.getReceiver().equals(AdminId) && chat.getSender().equals(MyID)){
                         mChat.add(chat);
                         Log.d("chat", "yes");
-
                     }
+
+                    DatabaseReference mTimeStampRef = mDatabase.getReference("all_users_data").child(mUserID);
+                    mTimeStampRef.child("newMessage").setValue("old");
+
                     mMessageAdapter = new MessageAdapter(MessageActivity.this, mChat, ImageUrl, AdminId);
                     mRecyclerView.setAdapter(mMessageAdapter);
-
                 }
             }
 
@@ -277,26 +279,10 @@ public class MessageActivity extends AppCompatActivity {
         });
     }
 
-    private void status(String status){
-
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("all_users_data").child(mUserID);
-        HashMap<String, Object> mHashmap = new HashMap<>();
-        mHashmap.put("Status", status);
-        mDatabaseReference.updateChildren(mHashmap);
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        status("Online");
-    }
-
     @Override
     protected void onPause() {
         super.onPause();
         mDatabaseReference.removeEventListener(mSeenListener);
-        status("Offline");
     }
 
 }

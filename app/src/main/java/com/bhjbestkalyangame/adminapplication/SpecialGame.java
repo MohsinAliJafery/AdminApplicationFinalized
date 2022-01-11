@@ -114,8 +114,8 @@ public class SpecialGame extends AppCompatActivity {
                     Display.setChecked(false);
                 }
 
-                Title.setHint(SpecialGameTitle);
-                Type.setHint(SpecialGameSubTitle);
+                Title.setText(SpecialGameTitle);
+                Type.setText(SpecialGameSubTitle);
                 NameOfGame.setHint(GameName);
 
             }

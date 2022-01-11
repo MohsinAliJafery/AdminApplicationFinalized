@@ -105,8 +105,8 @@ public class SuccessStory extends AppCompatActivity {
 
                 mButtonUpload.setEnabled(false);
 
-                if(mTitle.getText().toString().equals("") || Date.getText().toString().equals("")){
-                    Toast.makeText(SuccessStory.this, "Please Fill all the boxes.", Toast.LENGTH_SHORT).show();
+                if(mTitle.getText().toString().equals("") || Date.getText().toString().equals("") || mUploadTask == null){
+                    Toast.makeText(SuccessStory.this, "Please fill every box...", Toast.LENGTH_SHORT).show();
                 }else{
                     if (mUploadTask != null && mUploadTask.isInProgress()) {
                         Toast.makeText(SuccessStory.this, "Upload in progress...", Toast.LENGTH_SHORT).show();
@@ -200,7 +200,7 @@ public class SuccessStory extends AppCompatActivity {
 
     }
     private void updateLabel(){
-        String myFormat="d MMM yyyy";
+        String myFormat="d-M-yy";
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.UK);
         Date.setText(dateFormat.format(myCalendar.getTime()));
     }

@@ -132,24 +132,26 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         mReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot mDataSnapshot: snapshot.getChildren()){
-                    Chat mChat = mDataSnapshot.getValue(Chat.class);
-                    if(mChat.getReceiver().equals(AdminId) && mChat.getSender().equals(userId) ||
-                            mChat.getReceiver().equals(userId) && mChat.getSender().equals(AdminId)){
+                if (snapshot.exists()) {
+                    for (DataSnapshot mDataSnapshot : snapshot.getChildren()) {
+                        Chat mChat = mDataSnapshot.getValue(Chat.class);
+                        if (mChat.getReceiver().equals(AdminId) && mChat.getSender().equals(userId) ||
+                                mChat.getReceiver().equals(userId) && mChat.getSender().equals(AdminId)) {
                             TheLastMessage = mChat.getMessage();
+                        }
                     }
+
+                    switch (TheLastMessage) {
+                        case "default":
+
+                            break;
+
+                        default:
+                            last_message.setText(TheLastMessage);
+                            break;
+                    }
+
                 }
-
-                switch(TheLastMessage){
-                    case "default":
-
-                        break;
-
-                     default:
-                        last_message.setText(TheLastMessage);
-                        break;
-                }
-
             }
 
             @Override

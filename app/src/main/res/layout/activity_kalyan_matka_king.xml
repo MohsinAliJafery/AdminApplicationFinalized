@@ -149,7 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@layout/another_layout_for_button"
-            android:text="Success Stories"
+            android:text="Past Game"
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

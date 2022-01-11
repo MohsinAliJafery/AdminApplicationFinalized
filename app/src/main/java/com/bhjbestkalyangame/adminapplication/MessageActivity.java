@@ -105,13 +105,14 @@ public class MessageActivity extends AppCompatActivity {
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                Username.setText(user.getUsername());
+                if (snapshot.exists()) {
+                    User user = snapshot.getValue(User.class);
+                    Username.setText(user.getUsername());
 
-                Glide.with(getApplicationContext()).load(user.getImageUrl()).into(ProfileImage);
-                readMessage(mUserID, AdminId, user.getImageUrl());
+                    Glide.with(getApplicationContext()).load(user.getImageUrl()).into(ProfileImage);
+                    readMessage(mUserID, AdminId, user.getImageUrl());
+                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -179,14 +180,16 @@ public class MessageActivity extends AppCompatActivity {
         mSeenListener = mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot mSnapshot: snapshot.getChildren()){
-                    Chat chat = mSnapshot.getValue(Chat.class);
-                    if(chat.getReceiver().equals(mUserID) && chat.getSender().equals(AdminId)){
+                if (snapshot.exists()) {
+                    for (DataSnapshot mSnapshot : snapshot.getChildren()) {
+                        Chat chat = mSnapshot.getValue(Chat.class);
+                        if (chat.getReceiver().equals(mUserID) && chat.getSender().equals(AdminId)) {
 
-                        HashMap<String, Object> mHashmap = new HashMap<>();
-                        mHashmap.put("Seen", true);
-                        mSnapshot.getRef().updateChildren(mHashmap);
+                            HashMap<String, Object> mHashmap = new HashMap<>();
+                            mHashmap.put("Seen", true);
+                            mSnapshot.getRef().updateChildren(mHashmap);
 
+                        }
                     }
                 }
             }
@@ -255,20 +258,21 @@ public class MessageActivity extends AppCompatActivity {
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot mSnapshot : snapshot.getChildren()) {
+                        Chat chat = mSnapshot.getValue(Chat.class);
+                        if (chat.getReceiver().equals(MyID) && chat.getSender().equals(AdminId)
+                                || chat.getReceiver().equals(AdminId) && chat.getSender().equals(MyID)) {
+                            mChat.add(chat);
+                            Log.d("chat", "yes");
+                        }
 
-                for(DataSnapshot mSnapshot: snapshot.getChildren()){
-                    Chat chat = mSnapshot.getValue(Chat.class);
-                    if(chat.getReceiver().equals(MyID) && chat.getSender().equals(AdminId)
-                            || chat.getReceiver().equals(AdminId) && chat.getSender().equals(MyID)){
-                        mChat.add(chat);
-                        Log.d("chat", "yes");
+                        DatabaseReference mTimeStampRef = mDatabase.getReference("all_users_data").child(mUserID);
+                        mTimeStampRef.child("newMessage").setValue("old");
+
+                        mMessageAdapter = new MessageAdapter(MessageActivity.this, mChat, ImageUrl, AdminId);
+                        mRecyclerView.setAdapter(mMessageAdapter);
                     }
-
-                    DatabaseReference mTimeStampRef = mDatabase.getReference("all_users_data").child(mUserID);
-                    mTimeStampRef.child("newMessage").setValue("old");
-
-                    mMessageAdapter = new MessageAdapter(MessageActivity.this, mChat, ImageUrl, AdminId);
-                    mRecyclerView.setAdapter(mMessageAdapter);
                 }
             }
 

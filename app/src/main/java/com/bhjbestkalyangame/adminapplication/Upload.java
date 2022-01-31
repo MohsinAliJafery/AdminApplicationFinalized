@@ -4,13 +4,15 @@ public class Upload {
 
     private String Title;
     private String Description;
+    private String SubTitle;
     private String ImageUrl;
     public Upload() {
         //empty constructor needed
     }
-    public Upload(String title, String description, String imageUrl) {
+    public Upload(String title, String description, String subTitle, String imageUrl) {
 
         Title = title;
+        SubTitle = subTitle;
         Description = description;
         ImageUrl = imageUrl;
 
@@ -38,5 +40,13 @@ public class Upload {
 
     public void setImageUrl(String imageUrl) {
         ImageUrl = imageUrl;
+    }
+
+    public String getSubTitle() {
+        return SubTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        SubTitle = subTitle;
     }
 }

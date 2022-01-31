@@ -105,7 +105,7 @@ public class SuccessStory extends AppCompatActivity {
 
                 mButtonUpload.setEnabled(false);
 
-                if(mTitle.getText().toString().equals("") || Date.getText().toString().equals("") || mUploadTask == null){
+                if(mTitle.getText().toString().equals("") || Date.getText().toString().equals("") || mImageUri == null){
                     Toast.makeText(SuccessStory.this, "Please fill every box...", Toast.LENGTH_SHORT).show();
                 }else{
                     if (mUploadTask != null && mUploadTask.isInProgress()) {
@@ -179,7 +179,7 @@ public class SuccessStory extends AppCompatActivity {
                             }, 500);
 
                             Toast.makeText(SuccessStory.this, "Upload successful", Toast.LENGTH_LONG).show();
-                            Upload upload = new Upload(mTitle.getText().toString().trim(),
+                            Upload upload = new Upload(mTitle.getText().toString().trim(), "pass",
                                     Date.getText().toString() ,sUri);
 
                             String uploadId = mDatabaseRef.push().getKey();

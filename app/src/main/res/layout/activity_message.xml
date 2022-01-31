@@ -42,8 +42,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_message_activity"
         android:layout_width="match_parent"
-        android:layout_height="581dp"
-        android:layout_above="@id/bottom" />
+        android:layout_height="578dp"
+        android:layout_above="@+id/bottom" />
 
     <LinearLayout
         android:id="@+id/copy_clipboard"

@@ -63,6 +63,7 @@ public class MessageActivity extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     String mUserID, mUserEmail, mUserToken;
     boolean notify = false;
+    private ValueEventListener mChatListner;
 
     @SuppressLint("WrongViewCast")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -102,7 +103,7 @@ public class MessageActivity extends AppCompatActivity {
         // Change Id From ADmin to UserID
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("all_users_data").child(mUserID);
 
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -119,7 +120,6 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-        seenMessage(AdminId);
 
         SendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,7 +147,7 @@ public class MessageActivity extends AppCompatActivity {
                 Intent intent= new Intent(Intent.ACTION_SEND);
                 String[] recipients={mUserEmail};
                 intent.putExtra(Intent.EXTRA_EMAIL, recipients);
-                intent.putExtra(Intent.EXTRA_SUBJECT,"Kalyan Matka King - Important Notice!");
+                intent.putExtra(Intent.EXTRA_SUBJECT,"Kalyan Matka King - Important!");
                 intent.putExtra(Intent.EXTRA_TEXT,"");
                 intent.putExtra(Intent.EXTRA_CC,"mailcc@gmail.com");
                 intent.setType("text/html");
@@ -174,33 +174,6 @@ public class MessageActivity extends AppCompatActivity {
         });
 
     }
-
-    private void seenMessage(final String AdminId){
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("Chats");
-        mSeenListener = mDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    for (DataSnapshot mSnapshot : snapshot.getChildren()) {
-                        Chat chat = mSnapshot.getValue(Chat.class);
-                        if (chat.getReceiver().equals(mUserID) && chat.getSender().equals(AdminId)) {
-
-                            HashMap<String, Object> mHashmap = new HashMap<>();
-                            mHashmap.put("Seen", true);
-                            mSnapshot.getRef().updateChildren(mHashmap);
-
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
 
     private void sendMessage(String Sender, final String Receiver, String Message){
 
@@ -230,35 +203,16 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-        final String msg = Message;
-
-        mReference = FirebaseDatabase.getInstance().getReference("all_users_data").child(mUserID);
-
-        mReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                if(notify){
-//                        sendNotification(Receiver, user.getUsername(), msg);
-                }
-                notify = false;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
     }
 
     private void readMessage(final String MyID, final String AdminId, final String ImageUrl){
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("Chats");
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+        mChatListner = mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
+                    mChat.clear();
                     for (DataSnapshot mSnapshot : snapshot.getChildren()) {
                         Chat chat = mSnapshot.getValue(Chat.class);
                         if (chat.getReceiver().equals(MyID) && chat.getSender().equals(AdminId)
@@ -283,10 +237,10 @@ public class MessageActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mDatabaseReference.removeEventListener(mSeenListener);
-    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mDatabaseReference.removeEventListener(mChatListner);
+    }
 }

@@ -15,8 +15,11 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PublicInformation extends AppCompatActivity {
 
@@ -63,6 +66,19 @@ public class PublicInformation extends AppCompatActivity {
         });
 
         mReference = mDatabase.getReference("public_information");
+
+        mReference.child("message").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String message = snapshot.getValue(String.class);
+                PublicInfo.setText(message);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         SendBroadcast.setOnClickListener(new View.OnClickListener() {
             @Override

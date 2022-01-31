@@ -14,13 +14,13 @@
         android:id="@+id/show_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/profile_image"
-        android:background="@layout/background_left"
+        android:background="@drawable/background_right"
         android:padding="8dp"
         android:text="Hi, what's up?"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/noColor"
         android:textSize="17dp" />
 
     <TextView

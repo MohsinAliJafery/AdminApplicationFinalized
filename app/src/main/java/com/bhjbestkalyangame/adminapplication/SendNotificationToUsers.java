@@ -33,6 +33,11 @@ public class SendNotificationToUsers extends AppCompatActivity {
         mUserToken = intent.getStringExtra("Token");
         if(!mUserToken.equals("")){
             UserToken.setText(mUserToken);
+            UserToken.setTextColor(getResources().getColor(R.color.colorRed));
+            UserToken.setEnabled(false);
+            Broadcast.setVisibility(View.GONE);
+            SendToUser.setVisibility(View.VISIBLE);
+            UserToken.setVisibility(View.VISIBLE);
         }
 
         FirebaseMessaging.getInstance().subscribeToTopic("all");

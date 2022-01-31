@@ -12,8 +12,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SetCoinsLimit extends AppCompatActivity {
 
@@ -28,9 +31,22 @@ public class SetCoinsLimit extends AppCompatActivity {
         setContentView(R.layout.activity_set_coins_limit);
 
         CoinsLimit = findViewById(R.id.coin_limit);
-        Approve = findViewById(R.id.approve);
-        mDatabase = FirebaseDatabase.getInstance();
+        Approve =    findViewById(R.id.approve);
+        mDatabase =  FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference("coins");
+
+        mReference.child("limit").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int limit = snapshot.getValue(Integer.class);
+                CoinsLimit.setHint(""+limit);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         Approve.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -116,7 +116,7 @@ public class SpecialGame extends AppCompatActivity {
 
                 Title.setText(SpecialGameTitle);
                 Type.setText(SpecialGameSubTitle);
-                NameOfGame.setHint(GameName);
+                NameOfGame.setText(GameName);
 
             }
 

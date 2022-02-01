@@ -39,7 +39,7 @@ public class SetCoinsLimit extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int limit = snapshot.getValue(Integer.class);
-                CoinsLimit.setHint(""+limit);
+                CoinsLimit.setText(""+limit);
             }
 
             @Override
@@ -56,10 +56,7 @@ public class SetCoinsLimit extends AppCompatActivity {
                 mReference.child("limit").setValue(Coins).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(SetCoinsLimit.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SetCoinsLimit.this, KalyanMatkaKing.class);
-                        startActivity(intent);
-                        finish();
+                        Toast.makeText(SetCoinsLimit.this, "Successfully updated...", Toast.LENGTH_SHORT).show();
                     }
                 });
 

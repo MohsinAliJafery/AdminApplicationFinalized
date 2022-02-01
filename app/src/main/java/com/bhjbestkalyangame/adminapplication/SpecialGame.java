@@ -74,7 +74,7 @@ public class SpecialGame extends AppCompatActivity {
                 mReference.child("info").setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(SpecialGame.this, "Updated!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SpecialGame.this, "Successfully updated...", Toast.LENGTH_SHORT).show();
                     }
                 });
 

@@ -87,10 +87,7 @@ public class PublicInformation extends AppCompatActivity {
                 mReference.child("message").setValue(message).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(PublicInformation.this, "Broadcast Successful!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(PublicInformation.this, KalyanMatkaInterface.class);
-                        startActivity(intent);
-                        finish();
+                        Toast.makeText(PublicInformation.this, "Successfully updated...", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

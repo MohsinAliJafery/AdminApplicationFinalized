@@ -25,7 +25,8 @@
         <activity android:name=".KalyanNightGame" />
         <activity android:name=".KalyanMatkaGame" />
         <activity android:name=".MessageActivity" />
-        <activity android:name=".KalyanMatkaKing">
+        <activity android:name=".KalyanMatkaKing"/>
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,12 +37,11 @@
         <activity android:name=".PublicInformation" />
         <activity android:name=".KalyanMatkaResults" />
         <activity android:name=".KalyanPicker" />
-        <activity android:name=".KalyanMatkaInterface" />
         <activity android:name=".KalyanUpdateResults" />
 
         <service
             android:name=".Service.FirebaseMessagingService"
-            android:exported="false"
+            android:exported="true"
             android:permission="TODO">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

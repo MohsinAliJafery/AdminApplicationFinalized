@@ -112,7 +112,6 @@ public class SuccessStory extends AppCompatActivity {
                         Toast.makeText(SuccessStory.this, "Upload in progress...", Toast.LENGTH_SHORT).show();
                     } else {
                         uploadFile();
-                        finish();
                     }
                 }
 
@@ -178,7 +177,7 @@ public class SuccessStory extends AppCompatActivity {
                                 }
                             }, 500);
 
-                            Toast.makeText(SuccessStory.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SuccessStory.this, "Successfully updated...", Toast.LENGTH_LONG).show();
                             Upload upload = new Upload(mTitle.getText().toString().trim(), "pass",
                                     Date.getText().toString() ,sUri);
 

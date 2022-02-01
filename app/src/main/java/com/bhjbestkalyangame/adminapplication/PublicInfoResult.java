@@ -74,14 +74,14 @@ public class PublicInfoResult extends AppCompatActivity {
                 mReference.child("kalyan_result").setValue(SKalyan).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(PublicInfoResult.this, "Kalyan Result Updated!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PublicInfoResult.this, "Kalyan updated...", Toast.LENGTH_SHORT).show();
                     }
                 });
                 
                 mReference.child("kalyan_night_result").setValue(SKalyanNight).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(PublicInfoResult.this, "Kalyan Night Updated!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PublicInfoResult.this, "Kalyan Night updated...", Toast.LENGTH_SHORT).show();
                     }
                 });
                 

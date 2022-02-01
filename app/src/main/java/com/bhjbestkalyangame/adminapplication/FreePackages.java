@@ -63,14 +63,14 @@ public class FreePackages extends AppCompatActivity {
                 mReference.child("kalyan_matka").setValue(kalyanMatkaFree).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(FreePackages.this, "Updated!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FreePackages.this, "Successfully updated...", Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 SpecialGameFreeWithSubRef.child("special_game").setValue(specialGameFree).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(FreePackages.this, "Updated!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FreePackages.this, "Successfully updated...", Toast.LENGTH_SHORT).show();
                     }
                 });
 

@@ -38,6 +38,7 @@ public class SendNotificationToUsers extends AppCompatActivity {
             Broadcast.setVisibility(View.GONE);
             SendToUser.setVisibility(View.VISIBLE);
             UserToken.setVisibility(View.VISIBLE);
+            Description.setText("You have a new message.");
         }
 
         FirebaseMessaging.getInstance().subscribeToTopic("all");
@@ -52,7 +53,7 @@ public class SendNotificationToUsers extends AppCompatActivity {
                             Title.getText().toString(), Description.getText().toString(), getApplicationContext(), SendNotificationToUsers.this);
 
                     mFcmNotificationSender.SendNotifications();
-                    finish();
+                    Toast.makeText(SendNotificationToUsers.this, "Broadcast Activated...", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(SendNotificationToUsers.this, "Fields must not be empty.", Toast.LENGTH_SHORT).show();
                 }
@@ -68,6 +69,7 @@ public class SendNotificationToUsers extends AppCompatActivity {
                             Title.getText().toString(), Description.getText().toString(), getApplicationContext(), SendNotificationToUsers.this);
 
                     mFcmNotificationSender.SendNotifications();
+                    Toast.makeText(SendNotificationToUsers.this, "Lone Notification Provoked...", Toast.LENGTH_SHORT).show();
                     finish();
                 }else{
                     Toast.makeText(SendNotificationToUsers.this, "Fields must not be empty.", Toast.LENGTH_SHORT).show();

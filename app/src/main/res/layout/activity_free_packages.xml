@@ -7,7 +7,6 @@
     android:background="@color/noColor"
     tools:context=".FreePackages">
 
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
@@ -18,32 +17,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Switch
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/kalyan_matka_paid_or_free"
         android:layout_marginTop="100dp"
         android:background="@color/noColor"
         android:padding="20dp"
-        android:text="Kalyan Matka Paid or Free?"
-        android:textSize="14dp"
+        android:text="Kalyan Matka Free?"
+        android:textSize="18dp"
+        android:theme="@style/SwitchColor"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"/>
 
-
-    <Switch
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/special_game_free_with_subscription"
         android:layout_marginTop="10dp"
         android:background="@color/noColor"
         android:padding="20dp"
-        android:text="Special Game Free With Subscription?"
-        android:textSize="14dp"
+        android:text="Special Play Included in Subscription?"
+        android:textSize="18dp"
+        android:theme="@style/SwitchColor"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -51,15 +50,14 @@
         app:layout_constraintTop_toBottomOf="@+id/kalyan_matka_paid_or_free"
         />
 
-
     <Button
         android:id="@+id/go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:width="300dp"
-        android:text="Go"
-        android:background="@layout/primary_background_for_button"
+        android:text="Activate"
+        android:background="@layout/another_layout_for_button"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/noColor"
         app:layout_constraintStart_toStartOf="parent"

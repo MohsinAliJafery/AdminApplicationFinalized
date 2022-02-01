@@ -71,7 +71,7 @@
         android:width="300dp"
         android:enabled="false"
         android:visibility="gone"
-        android:text="Send To This User"
+        android:text="Lone Notification"
         android:background="@layout/primary_background_for_button"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/noColor"

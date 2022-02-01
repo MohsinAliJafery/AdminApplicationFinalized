@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 public class FreePackages extends AppCompatActivity {
 
     Button Go;
-    Switch SpecialGameFreeWithSub, KalyanMatkaFreeOrPaid;
+    CheckBox SpecialGameFreeWithSub, KalyanMatkaFreeOrPaid;
     FirebaseDatabase mDatabase;
     DatabaseReference mReference, SpecialGameFreeWithSubRef;
 

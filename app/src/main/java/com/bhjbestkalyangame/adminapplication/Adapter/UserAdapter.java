@@ -126,7 +126,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private void lastMessage(final String userId, final TextView last_message){
         TheLastMessage = "default";
 
-        final FirebaseUser mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference mReference = FirebaseDatabase.getInstance().getReference("Chats");
 
         mReference.addValueEventListener(new ValueEventListener() {
@@ -138,18 +137,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                         if (mChat.getReceiver().equals(AdminId) && mChat.getSender().equals(userId) ||
                                 mChat.getReceiver().equals(userId) && mChat.getSender().equals(AdminId)) {
                             TheLastMessage = mChat.getMessage();
+                        }else{
+                            TheLastMessage = "";
                         }
                     }
 
-                    switch (TheLastMessage) {
-                        case "default":
-
-                            break;
-
-                        default:
-                            last_message.setText(TheLastMessage);
-                            break;
-                    }
+                    last_message.setText(TheLastMessage);
 
                 }
             }

@@ -55,8 +55,7 @@ public class MessageActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
 
-    FirebaseUser mFirebaseUser;
-    DatabaseReference mDatabaseReference;
+    DatabaseReference mDatabaseReference, mBugRemoverRef;
 
     ValueEventListener mSeenListener;
     private String AdminId;
@@ -99,6 +98,10 @@ public class MessageActivity extends AppCompatActivity {
         mUserID = mIntent.getStringExtra("UserId");
         mUserEmail = mIntent.getStringExtra("UserEmail");
         mUserToken = mIntent.getStringExtra("UserToken");
+
+        // Bug Remover
+        mBugRemoverRef = FirebaseDatabase.getInstance().getReference("all_users_data");
+        mBugRemoverRef.child("Status").removeValue();
 
         // Change Id From ADmin to UserID
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("all_users_data").child(mUserID);

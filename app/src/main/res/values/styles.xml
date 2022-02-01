@@ -13,4 +13,9 @@
     <style name="MenuStyle" parent="Theme.AppCompat.Light">
         <item name="android:background">@android:color/white</item>
     </style>
+
+    <style name="SwitchColor">
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>

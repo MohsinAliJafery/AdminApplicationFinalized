@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
+        android:padding="20dp"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@layout/primary_background_for_button"
-            android:text="Notify Users"
+            android:text="Notification"
             android:textColor="@color/noColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@layout/another_layout_for_button"
-            android:text="Set Coins"
+            android:text="Set Coin"
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -136,12 +137,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@layout/google_background_for_button"
-            android:text="Free Packages"
+            android:text="Free Package"
             android:textColor="@color/noColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/set_coins" />
-
 
         <Button
             android:id="@+id/success_stories"

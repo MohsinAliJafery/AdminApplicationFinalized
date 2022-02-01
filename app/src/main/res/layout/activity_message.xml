@@ -98,7 +98,6 @@
             android:padding="5dp"
             android:textSize="16dp" />
 
-
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"

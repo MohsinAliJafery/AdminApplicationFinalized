@@ -178,8 +178,8 @@ public class SuccessStory extends AppCompatActivity {
                             }, 500);
 
                             Toast.makeText(SuccessStory.this, "Successfully updated...", Toast.LENGTH_LONG).show();
-                            Upload upload = new Upload(mTitle.getText().toString().trim(), "pass",
-                                    Date.getText().toString() ,sUri);
+                            Upload upload = new Upload(mTitle.getText().toString().trim(), Date.getText().toString(),
+                                     "pass",sUri);
 
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);

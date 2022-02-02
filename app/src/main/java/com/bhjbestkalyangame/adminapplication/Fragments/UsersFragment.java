@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -78,13 +79,18 @@ public class UsersFragment extends Fragment {
             if(snapshot.exists()){
                 mUser.clear();
                 for (DataSnapshot mSnapshot : snapshot.getChildren()) {
-                    User user = mSnapshot.getValue(User.class);
 
-                    if (!(user.getID()).equals(AdminId)) {
-                        mUser.add(user);
+                    if(!mSnapshot.hasChild("ID")){
+                       String s =  mSnapshot.getKey();
+                       mReference.child(s).removeValue();
+                    }else {
+                        User user = mSnapshot.getValue(User.class);
+                        if (!(user.getID()).equals(AdminId)) {
+                            mUser.add(user);
+                        }
                     }
-
                 }
+
                 Collections.sort(mUser, new Comparator<User>() {
                     @Override
                     public int compare(User user, User t1) {
@@ -95,6 +101,7 @@ public class UsersFragment extends Fragment {
                         }
                     }
                 });
+                mToolbar.setTitle("People ("+mUser.size()+")");
                 mUserAdapter = new UserAdapter(getContext(), mUser, true);
                 mRecyclerView.setAdapter(mUserAdapter);
                 mProgressBar.setVisibility(View.GONE);

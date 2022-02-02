@@ -78,8 +78,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 holder.ImgOn.setVisibility(View.VISIBLE);
                 holder.ImgOff.setVisibility(View.GONE);
          }else{
-               holder.ImgOff.setVisibility(View.VISIBLE);
-               holder.ImgOn.setVisibility(View.GONE);
+                holder.ImgOff.setVisibility(View.VISIBLE);
+                holder.ImgOn.setVisibility(View.GONE);
            }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
